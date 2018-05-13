@@ -16,31 +16,39 @@ Arguments are listed after the command. Parentheses `()` indicate an optional ar
 
 #### Invites
 
-`!add-invites @user amount (reason)`   Adds/Removes invites to/from a member
-`!clear-invites (@user) (clearBonus)`  Clear invites of the server/a user
-`!invite-codes`                        Get a list of all your invite codes
-`!invites (@user)`                     Show personal invites
-`!restore-invites (@user)`             Restore all previously cleared invites
-`!leaderboard (page)`                  Show the people with the most invites
+```
+!add-invites @user amount (reason)   Adds/Removes invites to/from a member
+!clear-invites (@user) (clearBonus)  Clear invites of the server/a user
+!invite-codes                        Get a list of all your invite codes
+!invites (@user)                     Show personal invites
+!restore-invites (@user)             Restore all previously cleared invites
+!leaderboard (page)                  Show the people with the most invites
+```
 
 #### Ranks
 
-`!add-rank @role invites (info)`  Add a new rank
-`!show-ranks`                     Show all ranks
-`!remove-rank @role`              Remove a rank
+```
+!add-rank @role invites (info)  Add a new rank
+!show-ranks                     Show all ranks
+!remove-rank @role              Remove a rank
+```
 
 #### Admin
 
-`!config (key) (value)`  Show and change the config of the server
-`!diagnose`              Check for problems (e.g. missing permissions)
-`!fake (page)`           Help find users trying to cheat.
-`!info @user`            Show info about a specific member
+```
+!config (key) (value)  Show and change the config of the server
+!diagnose              Check for problems (e.g. missing permissions)
+!fake (page)           Help find users trying to cheat.
+!info @user            Show info about a specific member
+```
 
 #### Other
 
-`!botInfo`             Show info about the bot
-`!feedback <message>`  Give feedback about the bot to the developers
-`!members`             Show member count of current server.
+```
+!botInfo             Show info about the bot
+!feedback <message>  Give feedback about the bot to the developers
+!members             Show member count of current server.
+```
 
 ## Setup / Getting started
 
