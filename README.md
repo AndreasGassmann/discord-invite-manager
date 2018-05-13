@@ -10,27 +10,92 @@ IMPORTANT: Due to the way discord handles invites, it is not possible to find ou
 
 ## Commands
 
-### Configure Bot (Mods only)
+This is a list of commands you can use. You can get more info about a specific command by using `!help <command>` (e.g. `!help add-rank`)
 
-* `!setprefix <prefix>` Change prefix of commands so there are no collisions with other bots
-* `!clearinvites` Clear all invites that happened in the past.
-* `!restoreinvites` Restore invites that were cleared using the `!restoreinvites` command
-* `!info @user` Display information about a user (who invited him, when he joined, who he invited)
-* `!fake` List of users that might be trying to cheat the invite system by joining multiple times
+Arguments are listed after the command. Parentheses `()` indicate an optional argument. (e.g. `(reason)` means the reason is optional)
 
-### Manage ranks (Mods only)
+#### Invites
 
-* `!addRank @role invitesNeeded description (can be a text)` Add a rank to the bot
-* `!removeRank @role` Delete a rank
+`!add-invites @user amount (reason)`   Adds/Removes invites to/from a member
+`!clear-invites (@user) (clearBonus)`  Clear invites of the server/a user
+`!invite-codes`                        Get a list of all your invite codes
+`!invites (@user)`                     Show personal invites
+`!restore-invites (@user)`             Restore all previously cleared invites
+`!leaderboard (page)`                  Show the people with the most invites
 
-### User Commands (everyone)
+#### Ranks
 
-* `!ranks` Show a list of all ranks added by the mods
-* `!invites` Displays how many invites the user has
-* `!leaderboard #channel` (Channel is optional): Display a leaderboard of the members with the most invites. If the channel property is set, only invites created for that channel will be counted. Otherwise all permanent invites will be counted.
-* `!members` Show how many users are in the server (Online, Bots, Humans, How many joined in the last 24hours and in the last week)
+`!add-rank @role invites (info)`  Add a new rank
+`!show-ranks`                     Show all ranks
+`!remove-rank @role`              Remove a rank
+
+#### Admin
+
+`!config (key) (value)`  Show and change the config of the server
+`!diagnose`              Check for problems (e.g. missing permissions)
+`!fake (page)`           Help find users trying to cheat.
+`!info @user`            Show info about a specific member
+
+#### Other
+
+`!botInfo`             Show info about the bot
+`!feedback <message>`  Give feedback about the bot to the developers
+`!members`             Show member count of current server.
+
+## Setup / Getting started
+
+Simply invite the InviteManager to your server and grant the necessary permissions. Only 2 permissions are required:
+
+`MANAGE_GUILD`: The `MANAGE_GUILD` or "Manage Server" permission is required to fetch the invite codes and counts of all users.
+`MANAGE_ROLES`: This permission is required to assign roles to people when they reach a certain rank.
+
+Also make sure that the bot has write access to any channel where he needs to reply and check if `link embeds` are enabled for the best experience.
+
+Once the bot is working, you can customize its setting. For more info do `!help config` or check the FAQ section below.
+
+## FAQ
+
+This is a list of frequently asked questions.
+
+### How do I change the prefix of the bot?
+
+You can do `!config prefix -` to change the prefix. If you don't know your current prefix, you can do `@InviteManager prefix` to see the prefix.
+
+### How do I set join and leave messages?
+
+Set the channel by doing `!config joinMessageChannel #channel` or `!config leaveMessageChannel #channel`. After doing that, new joins and leaves will be posted to that channel.
+
+### Can I customize the join and leave messages?
+
+Absolutely! You can change the message by doing for example
+`!config joinMessage {memberMention} **joined**; Invited by **{inviterName}** (**{numInvites}** invites)` or `!config leaveMessage {memberName} **left**; Invited by **{inviterName}**`.
+The following placeholders are available:
+
+|                  | join | leave | example | description                                                                             |
+|------------------|------|-------|---------|-----------------------------------------------------------------------------------------|
+| {memberName}     | yes  | yes   | Andy    | The name of the member that just joined your discord server                             |
+| {memberMention}  | yes  | no    | @Andy   | The mention of the member that just joined your discord server (person will be pinged). |
+| {inviterName}    | yes  | yes   | Andy    | The name of the inviter                                                                 |
+| {inviterMention} | yes  | yes   | @Andy   | The mention of the inviter (person will be pinged)                                      |
+| {numInvites}     | yes  | yes   | 7       | Number of invites the inviter has in total                                              |
+| {memberCount}    | yes  | yes   | 42      | Number of members your server has in total                                              |
+
+### What are "Ranks" and how can I use them?
+
+Ranks are used to assign roles to people when they reach a certain amount of invites. For example. if you have a role called `@Beginner` and you want people who have 5 or more invites to be added to that role, you would have to create a rank for that like so: `!add-rank @Beginner 5 (and if you want a description here)`. As soon as someone has 5 invites, he will automatically be added to that role!
+
+### How can I disable the bot in all but one/some channels?
+
+Take away the read message permissions in the channels where you don't want the bot to reply.
+
+## Webpanel
+
+The webpanel is being worked on. If you would like to get access right now, you can ask for it on the Discord Support server.
+
+## Troubleshooting
+
+If the bot does not work as expected, please make sure it has all the permissions it needs. It needs to be able to post to the channel where you are executing a command and ideally you also have "link embeds" enabled on your server.
 
 ## Upcoming Features
 
-* Keep invites even if the channel they were created for gets deleted.
 * Find people who invite inactive people. This could be an indicator that they are using a service that adds dummy accounts.
